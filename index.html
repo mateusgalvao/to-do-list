@@ -4,20 +4,47 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css"/>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <title>Document</title>
+    <title>List</title>
 </head>
 <body>
-    <div class="wrapper">
-        <header>Todo APP</header>
-        <div class="inputField">
-            <input type="text" placeholder="Add your new todo"></input>
-            <button><i class="fas fa-plus"></i></button>
-        </div>
-        <ul>
-            <li>Buy a new gaming laptop <span></span></li>
-        </ul>
-    
-    </div>
+    <header>Lista de Tarefas
+        <form id="new-task-form">
+            <input
+                type="text"
+                id="new-task-input"
+                placeholder="O que você tem planejado ? "/>
+            <input
+            type="submit"
+            id="new-task-submit"
+            value="Adicione Tarefa"/>
+        </form>
+    </header>
+    <main>
+        <section class="task-list">
+            <h2>Tarefas</h2>
+            <div id="tasks">
+                <div class="task">
+
+                <div class="content">
+                    <input
+                    type="text"
+                    class="task"
+                    value="My shiny task"
+                    readonly
+                    />
+                </div>
+                <div class="actions">
+                    <button class="edit">Editar</button>
+                    <button class="delete">Deletar</button>
+                </div>
+                </div>
+                
+            </div>
+        </section>
+    </main>
+
+    <script src="index.js"></script>
 </body>
 </html>
