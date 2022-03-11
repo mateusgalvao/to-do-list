@@ -104,10 +104,13 @@ main{
 
 #tasks .task .content .text{
     color: var(--ligth);
-    font-size: 2.25rem;
+    font-size: 1.25rem;
     width: 100%;
     display: block;
     transition: 0.4s;
+}
+#tasks .task .content {
+    flex: 1 1 0%;
 }
 
 #tasks .task .content .text:not(:read-only){
