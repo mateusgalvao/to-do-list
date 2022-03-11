@@ -1,62 +1,29 @@
-//getting all required elements || obtendo todos os elementos necessários
+window.addEventListener('load', () => {
+    const form = document.querySelector("#new-task-form");
+    const input = document.querySelector("#new-task-input");
+    const list_el = document.querySelector("#tasks");
 
-const inputBox = document.querySelector(".inputField input");
-const addBtn = document.querySelector(".inputField button");
-const todoList = document.querySelector(".todoList");
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
 
+        const task = input.value; 
 
-inputBox.onkeyup = () => {
-    let userData = inputBox.value;//getting user entered value | obtendo o valor inserido pelo usuário
-    if (userData.trim() != 0){//if user values aren't only spaces | se os valores do usuário não forem apenas espaços
+        if (!task){
+            alert("plese");
+            return;
+        } 
 
-        addBtn.classList.add("active")//active the add button | ative o botão adicionar
+        const task_el = document.createElement("div");
+        task_el.classList.add("task");
 
-    }else{
-        addBtn.classList.remove("active")//remove the add button| remova o botão adicionar 
-    }
-};
-showTasks()
+        const task_content_el = document.createElement("div");
+        task_content_el.classList.add("content");
+        task_content_el.innerText = task;
 
-//if user click on the add button || se o usuário clicar no botão adicionar
-addBtn.onclick = () => {
-    let userData = inputBox.value;//getting user entered value | obtendo o valor inserido pelo usuário
-    let getLocalStorage = localStorage.getItem("New todo"); //getting localstorage
-    if(getLocalStorage == null){ //if localstorage is null
-        listArr = []; //creating blank array 
-    }else{
-        listArr =JSON.parse(getLocalStorage); //transforming json string into a js object
-    }
-    listArr.push(userData); // pushing or adding user data 
-    localStorage.setItem("New Todo", JSON.stringify(listArr)); //transforming js object into a json string 
-    showTasks();
-}
+        task_el.appendChild(task_content_el);
 
-function showTasks(){
-    let getLocalStorage = localStorage.getItem("New Todo");//getting localstorage
-    if(getLocalStorage == null){ // if localstorage is null
-        listArr = []; //creating blank array
-    }else{
-        listArr = JSON.parse(getLocalStorage); //transforming json string into a js object
-    }  
-    let newLitag = '';
-    listArr.forEach((element, index )=> {
-        newLitag += `<li>${element}  <span onclick = "deleteTask(${index})"; ><i class="fas fa-trash"></i></span></li>`;
-       
-    });
-    todoList.innerHTML = listArr; //adding new li tag inside ul tag
-    inputBox.value = "";
-}
- 
-//deletar
-function deleteTask(index){
-    let getLocalStorage = localStorage.getItem("New Todo");
-    listArr = JSON.parse(getLocalStorage);
-    listArr.splice(index, 1);
+        list_el.appendChild(task_el)
 
-    localStorage.setItem("New Todo", JSON.stringify(listArr))
-    showTasks()
-}
+    })
 
-
-
-
+})
