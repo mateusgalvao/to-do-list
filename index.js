@@ -2,11 +2,25 @@ window.addEventListener('load', () => {
     const form = document.querySelector("#new-task-form");
     const input = document.querySelector("#new-task-input");
     const list_el = document.querySelector("#tasks");
+  
+
 
     form.addEventListener('submit', (e) => {
+
+        
+
         e.preventDefault();
 
         const task = input.value; 
+        localStorage.setItem('Terefa', task) 
+
+        function removeName(){
+			if(localStorage.getItem(task)){
+				localStorage.removeItem(task);
+				whatsYourName()
+			}	
+		}
+       
 
         if (!task){
             alert("plese");
@@ -34,7 +48,7 @@ window.addEventListener('load', () => {
 
         const task_edit_el = document.createElement("button");
         task_edit_el.classList.add("edit");
-        task_edit_el.innerHTML = "Edit";
+        task_edit_el.innerHTML = "Editar";
 
         const task_delete_el = document.createElement("button");
         task_delete_el.classList.add("delete");
@@ -50,20 +64,25 @@ window.addEventListener('load', () => {
         input.value = "";
 
         task_edit_el.addEventListener('click', () => {
-            if(task_edit_el.innerText.toLowerCase() == "edit"){
+            if(task_edit_el.innerText.toLowerCase() == "editar"){
                 task_input_el.removeAttribute("readonly");
                 task_input_el.focus();
                 task_edit_el.innerText = "Save";
             } else {
                 task_input_el.setAttribute("readonly","readonly");
-                task_edit_el.innerText = "Edit"
+                task_edit_el.innerText = "Editar"
             }
 
         });
         task_delete_el.addEventListener('click', () => {
-            list_el.removeChild(task_el)
-        })
+            list_el.removeChild(task_el);
+            removeName(list_el)
+        
+        });
+       
 
     })
 
 })
+
+
